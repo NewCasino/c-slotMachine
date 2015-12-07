@@ -15,6 +15,9 @@ namespace slot_machine
         const int speed = 20;
         int up;
         int down;
+        Random rnd = new Random();
+
+
         public Form2()
         {
             InitializeComponent();
@@ -22,12 +25,37 @@ namespace slot_machine
 
         private void Form2_Load(object sender, EventArgs e)
         {
+           
             pictureboxWidtHeight();
             buttonLocation();
             pictureboxLocation();
             pictureboxImage();
+            pictureboxRandom();
         }
-        
+
+        private void pictureboxRandom()
+        {
+            pictureBox1.Location = new Point(pictureBox1.Location.X, up + (rnd.Next(0, 6) * 120));
+            pictureBox2.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
+
+            pictureBox4.Location = new Point(pictureBox4.Location.X, up + (rnd.Next(0, 6) * 120));
+            pictureBox3.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y - Properties.Resources.reel_strip.Height);
+
+            pictureBox6.Location = new Point(pictureBox6.Location.X, up + (rnd.Next(0, 6) * 120));
+            pictureBox5.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y - Properties.Resources.reel_strip.Height);
+
+           
+        }
+
+        private void pictureboxStart()
+        {
+            //pictureboxRandom();
+            //Console.WriteLine(rndNum);
+            timer1.Enabled = true;
+            timer2.Enabled = true;
+            timer3.Enabled = true;
+        }
+
         private void pictureboxImage()
         {
             pictureBox1.Image = Properties.Resources.reel_strip;
@@ -115,5 +143,34 @@ namespace slot_machine
                 pictureBox5.Location = new Point(pictureBox6.Location.X, button1.Location.Y - Properties.Resources.reel_strip.Height);
             }
         }
+        int i;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            i = rnd.Next(-20, 20);
+            pictureboxStart();
+            timer4.Enabled = true;
+            //pictureboxStop();
+        }
+
+        private void pictureboxStop()
+        {
+           
+        }
+        
+        private void timer4_Tick(object sender, EventArgs e)
+        {
+            i += 1;
+            if (i >= 120)
+            {
+                timer5.Enabled = true;
+            }
+        }
+
+        private void timer5_Tick(object sender, EventArgs e)
+        {
+            timer1.Interval += 1;
+            Console.Write(timer1.Interval);
+        }
+        
     }
 }
