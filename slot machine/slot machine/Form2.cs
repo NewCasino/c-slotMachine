@@ -34,12 +34,15 @@ namespace slot_machine
             pictureBox2.Image = Properties.Resources.reel_strip;
             pictureBox3.Image = Properties.Resources.reel_strip;
             pictureBox4.Image = Properties.Resources.reel_strip;
+            pictureBox5.Image = Properties.Resources.reel_strip;
+            pictureBox6.Image = Properties.Resources.reel_strip;
         }
 
         private void pictureboxLocation()
         {
             pictureBox2.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
             pictureBox3.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y - Properties.Resources.reel_strip.Height);
+            pictureBox5.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y - Properties.Resources.reel_strip.Height);
         }
 
         private void buttonLocation()
@@ -63,6 +66,12 @@ namespace slot_machine
 
             pictureBox4.Width = Properties.Resources.reel_strip.Width;
             pictureBox4.Height = Properties.Resources.reel_strip.Height;
+
+            pictureBox5.Width = Properties.Resources.reel_strip.Width;
+            pictureBox5.Height = Properties.Resources.reel_strip.Height;
+
+            pictureBox6.Width = Properties.Resources.reel_strip.Width;
+            pictureBox6.Height = Properties.Resources.reel_strip.Height;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -76,6 +85,34 @@ namespace slot_machine
             if (pictureBox2.Location.Y >= down)
             {
                 pictureBox2.Location = new Point(pictureBox1.Location.X, button1.Location.Y - Properties.Resources.reel_strip.Height);
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + speed);
+            pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + speed);
+            if (pictureBox4.Location.Y >= down)
+            {
+                pictureBox4.Location = new Point(pictureBox4.Location.X, button1.Location.Y - Properties.Resources.reel_strip.Height);
+            }
+            if (pictureBox3.Location.Y >= down)
+            {
+                pictureBox3.Location = new Point(pictureBox4.Location.X, button1.Location.Y - Properties.Resources.reel_strip.Height);
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            pictureBox5.Location = new Point(pictureBox5.Location.X, pictureBox5.Location.Y + speed);
+            pictureBox6.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y + speed);
+            if (pictureBox6.Location.Y >= down)
+            {
+                pictureBox6.Location = new Point(pictureBox6.Location.X, button1.Location.Y - Properties.Resources.reel_strip.Height);
+            }
+            if (pictureBox5.Location.Y >= down)
+            {
+                pictureBox5.Location = new Point(pictureBox6.Location.X, button1.Location.Y - Properties.Resources.reel_strip.Height);
             }
         }
     }
