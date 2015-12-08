@@ -39,9 +39,7 @@ namespace slot_machine
             pictureboxImage();
             pictureboxRandom();
             Console.WriteLine("{0},{1},{2},{3},{4},{5},({6},{7},{8},{9},{10}", loc[0], loc[1], loc[2], loc[3], loc[4], loc[5], loc[6], loc[7], loc[8], loc[9], loc[10]);
-            Console.WriteLine("box1:{0},box2:{1}", pictureBox1.Location.Y, pictureBox2.Location.Y);
-
-
+            Console.WriteLine("box4:{0},box3:{1}", pictureBox4.Location.Y, pictureBox3.Location.Y);
         }
 
         private void pictureboxLoc()
@@ -188,9 +186,14 @@ namespace slot_machine
             i += 1;
             if (i >= 120)
             {
-                timer4.Enabled = false;
+               // timer4.Enabled = false;
                 timer5.Enabled = true;
+                if (i >= 140)
+                {
+                    timer7.Enabled = true;
+                }
             }
+           
         }
 
         private void timer5_Tick(object sender, EventArgs e)
@@ -202,29 +205,21 @@ namespace slot_machine
             else
             {
                 timer5.Enabled = false;
-                Console.WriteLine("after turn box1: {0},box2:{1}", pictureBox1.Location.Y, pictureBox2.Location.Y);
                 checkLow = pictureBox1.Location.Y;//278   78,42,162
                 if (checkLow < 0)
-                {
-                    Console.WriteLine("negative");
-                }
                 isLow = Math.Abs( checkLow);
 
                 foreach (int a in loc)
                 {
                     checkLow = Math.Abs(a - pictureBox1.Location.Y);
-                    Console.WriteLine("{0} < {1}", checkLow, isLow);
                     if (checkLow < isLow)
                     {
                         isLow = checkLow;
                         thisLow = a;
                     }
-                  //  Console.WriteLine("after is {0}", checkLow);
                 }
                 setRealLoc = thisLow;
                  box2Y =0;
-                Console.WriteLine(isLow);
-                Console.WriteLine("this is ans {0} ", thisLow);
                 //   Console.WriteLine()
                  timer6.Enabled = true;
                // pushToAns();
@@ -276,6 +271,57 @@ namespace slot_machine
         {
             pictureBox1.Location = new Point(pictureBox1.Location.X, 80);
             pictureBox2.Visible = false;
+        }
+
+        private void timer7_Tick(object sender, EventArgs e)
+        {
+            if (speed[1] > 0)
+            {
+                speed[1] -= 2;
+            }
+            else
+            {
+                timer7.Enabled = false;
+                checkLow = pictureBox4.Location.Y;
+                isLow = Math.Abs(checkLow);
+
+                foreach (int a in loc)
+                {
+                    checkLow = Math.Abs(a - pictureBox4.Location.Y);
+                    if (checkLow < isLow)
+                    {
+                        isLow = checkLow;
+                        thisLow = a;
+                    }
+                }
+                setRealLoc = thisLow;
+                box2Y = 0;
+                timer8.Enabled = true;
+            }
+        }
+
+        private void timer8_Tick(object sender, EventArgs e)
+        {
+            if (pictureBox4.Location.Y > thisLow)
+            {
+                if (isLow > box2Y)
+                {
+                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y - 2);//--
+                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y - 2);
+                }
+            }
+            else if (pictureBox4.Location.Y < thisLow)
+            {
+                if (isLow > box2Y)
+                {
+                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + 2);
+                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + 2);
+                }
+            }
+            else if (pictureBox4.Location.Y == thisLow)
+            {
+                timer8.Enabled = false;
+            }
         }
     }
 }//box1 : 560,320
