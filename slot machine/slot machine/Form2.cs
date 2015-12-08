@@ -13,11 +13,16 @@ namespace slot_machine
     public partial class Form2 : Form
     {
         //const int speed = 20;
-        int[] speed = { 20 ,20,20};
+        int[] speed = { 20, 20, 20 };
         int up;
         int down;
         Random rnd = new Random();
-        List<double> loc = new List<double>();
+        List<int> loc = new List<int>();
+        int thisLow = 0;
+        int checkLow;
+        int isLow;
+        int setRealLoc;
+        int box2Y;
 
         public Form2()
         {
@@ -33,9 +38,10 @@ namespace slot_machine
             pictureboxLocation();
             pictureboxImage();
             pictureboxRandom();
-            Console.WriteLine("{0},{1},{2},{3},{4},{5}",loc[0],loc[1],loc[2],loc[3],loc[4],loc[5]);
-            Console.WriteLine(pictureBox1.Location.Y);
-                
+            Console.WriteLine("{0},{1},{2},{3},{4},{5},({6},{7},{8},{9},{10}", loc[0], loc[1], loc[2], loc[3], loc[4], loc[5], loc[6], loc[7], loc[8], loc[9], loc[10]);
+            Console.WriteLine("box1:{0},box2:{1}", pictureBox1.Location.Y, pictureBox2.Location.Y);
+
+
         }
 
         private void pictureboxLoc()
@@ -46,6 +52,11 @@ namespace slot_machine
             loc.Add(pictureBox1.Location.Y + (3 * 120));
             loc.Add(pictureBox1.Location.Y + (4 * 120));
             loc.Add(pictureBox1.Location.Y + (5 * 120));
+            loc.Add(pictureBox1.Location.Y - (1 * 120));
+            loc.Add(pictureBox1.Location.Y - (2 * 120));
+            loc.Add(pictureBox1.Location.Y - (3 * 120));
+            loc.Add(pictureBox1.Location.Y - (4 * 120));
+            loc.Add(pictureBox1.Location.Y - (5 * 120));
         }
 
         private void pictureboxRandom()
@@ -59,7 +70,7 @@ namespace slot_machine
             pictureBox6.Location = new Point(pictureBox6.Location.X, up + (rnd.Next(0, 6) * 120));
             pictureBox5.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y - Properties.Resources.reel_strip.Height);
 
-           
+
         }
 
         private void pictureboxStart()
@@ -169,9 +180,9 @@ namespace slot_machine
 
         private void pictureboxStop()
         {
-           
+
         }
-        
+
         private void timer4_Tick(object sender, EventArgs e)
         {
             i += 1;
@@ -191,26 +202,81 @@ namespace slot_machine
             else
             {
                 timer5.Enabled = false;
-                Console.WriteLine ("Y: {0}",pictureBox1.Location.Y);
-                double checkLow = pictureBox1.Location.Y;//278   78,42,162
-                double isLow = checkLow;
-                double thisLow=0;
-                foreach (double a in loc)
+                Console.WriteLine("after turn box1: {0},box2:{1}", pictureBox1.Location.Y, pictureBox2.Location.Y);
+                checkLow = pictureBox1.Location.Y;//278   78,42,162
+                if (checkLow < 0)
+                {
+                    Console.WriteLine("negative");
+                }
+                isLow = Math.Abs( checkLow);
+
+                foreach (int a in loc)
                 {
                     checkLow = Math.Abs(a - pictureBox1.Location.Y);
-                    Console.WriteLine("after is {0}", checkLow);
+                    Console.WriteLine("{0} < {1}", checkLow, isLow);
                     if (checkLow < isLow)
                     {
                         isLow = checkLow;
                         thisLow = a;
                     }
+                  //  Console.WriteLine("after is {0}", checkLow);
                 }
+                setRealLoc = thisLow;
+                 box2Y =0;
                 Console.WriteLine(isLow);
-                Console.WriteLine(thisLow);
-
+                Console.WriteLine("this is ans {0} ", thisLow);
+                //   Console.WriteLine()
+                 timer6.Enabled = true;
+               // pushToAns();
             }
         }
-        
+
+        private void pushToAns()
+        {
+            if (pictureBox1.Location.Y > thisLow)
+            {
+                pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y-isLow);//--
+                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y -isLow);
+                Console.WriteLine("box1Y{0},boy2Y{1}", pictureBox1.Location.Y, pictureBox2.Location.Y);
+            }
+            else
+            {
+                pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + isLow);
+                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + isLow);
+                Console.WriteLine("box1Y{0},boy2Y{1}", pictureBox1.Location.Y, pictureBox2.Location.Y);
+            }
+        }
+
+        private void timer6_Tick(object sender, EventArgs e)
+        {
+            if (pictureBox1.Location.Y > thisLow)
+            {
+                if (isLow > box2Y)
+                {
+                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - 2);//--
+                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 2);
+                }
+            }
+            else if (pictureBox1.Location.Y < thisLow)
+            {
+                if (isLow > box2Y)
+                {
+                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + 2);
+                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + 2);
+                }
+            }
+            else if (pictureBox1.Location.Y == thisLow)
+            {
+                timer6.Enabled = false;
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Location = new Point(pictureBox1.Location.X, 80);
+            pictureBox2.Visible = false;
+        }
     }
-}//-160   250 568 350 -104 854 -94
-//50 70
+}//box1 : 560,320
+ //box2:200
