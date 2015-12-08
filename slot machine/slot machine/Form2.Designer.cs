@@ -49,6 +49,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.timer7 = new System.Windows.Forms.Timer(this.components);
             this.timer8 = new System.Windows.Forms.Timer(this.components);
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -168,7 +169,7 @@
             // 
             // timer5
             // 
-            this.timer5.Interval = 250;
+            this.timer5.Interval = 1;
             this.timer5.Tick += new System.EventHandler(this.timer5_Tick);
             // 
             // timer6
@@ -197,7 +198,7 @@
             // 
             // timer7
             // 
-            this.timer7.Interval = 250;
+            this.timer7.Interval = 1;
             this.timer7.Tick += new System.EventHandler(this.timer7_Tick);
             // 
             // timer8
@@ -205,11 +206,21 @@
             this.timer8.Interval = 1;
             this.timer8.Tick += new System.EventHandler(this.timer8_Tick);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(426, 184);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(434, 10);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 600);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.pictureBox7);
@@ -258,5 +269,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer timer7;
         private System.Windows.Forms.Timer timer8;
+        private System.Windows.Forms.Button button6;
     }
 }
