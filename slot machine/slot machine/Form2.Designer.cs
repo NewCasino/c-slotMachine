@@ -174,7 +174,7 @@
             // 
             // timer6
             // 
-            this.timer6.Interval = 1;
+            this.timer6.Interval = 10;
             this.timer6.Tick += new System.EventHandler(this.timer6_Tick);
             // 
             // button4
@@ -203,7 +203,7 @@
             // 
             // timer8
             // 
-            this.timer8.Interval = 1;
+            this.timer8.Interval = 10;
             this.timer8.Tick += new System.EventHandler(this.timer8_Tick);
             // 
             // button6

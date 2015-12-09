@@ -13,7 +13,7 @@ namespace slot_machine
     public partial class Form2 : Form
     {
         //const int speed = 20;
-        int[] speed = { 20, 20, 20 };
+        int[] speed = { 30, 30, 20 };
         int up;
         int down;
         Random rnd = new Random();
@@ -23,10 +23,15 @@ namespace slot_machine
         int checkLow;
         int checklow2;
         int isLow;
+        int divideNum = 2;
+        int divideNum2 = 2;
         int isLow2;
         int setRealLoc;
         int setRealLoc2;
         int box2Y;
+        bool firstColumn;
+        bool secondColumn;
+        bool thirdColumn;
 
         public Form2()
         {
@@ -188,13 +193,20 @@ namespace slot_machine
         private void timer4_Tick(object sender, EventArgs e)
         {
             i += 1;
-            if (i >= 120)
+            if (i >= rnd.Next(120,140))
             {
-               // timer4.Enabled = false;
-                timer5.Enabled = true;
-                if (i >= 140)
+                // timer4.Enabled = false;
+                if (firstColumn == false)
                 {
-                    timer7.Enabled = true;
+                    timer5.Enabled = true;
+                }
+               
+                if (i >= rnd.Next(140,160))
+                {
+                    if (secondColumn == false)
+                    {
+                        timer7.Enabled = true;
+                    }
                 }
             }
            
@@ -228,7 +240,17 @@ namespace slot_machine
                 {
                     pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
                 }
+                
+                Console.WriteLine("is low:{0}", isLow);
+                divideNum = 2;
+                while (isLow%divideNum!=0)
+                {
+                    divideNum += 1;
+                }
+                isLow /= divideNum;
+                Console.WriteLine("is low:{0}", divideNum);
                 timer6.Enabled = true;
+                firstColumn = true;
             }
         }
 
@@ -250,26 +272,25 @@ namespace slot_machine
 
         private void timer6_Tick(object sender, EventArgs e)
         {
+            timer6.Interval += 10;
             if (pictureBox1.Location.Y > thisLow)
             {
                 if (isLow > box2Y)
                 {
-                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - 1);//--
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 1);
+                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - isLow);//--
+                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - isLow);
                 }
             }
             else if (pictureBox1.Location.Y < thisLow)
             {
                 if (isLow > box2Y)
                 {
-                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + 1);
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + 1);
+                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + isLow);
+                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + isLow);
                 }
             }
             else if (pictureBox1.Location.Y <= thisLow )
             {
-               
-                 
                 timer6.Enabled = false;
             }
 
@@ -309,29 +330,40 @@ namespace slot_machine
                 {
                     pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox4.Location.Y - Properties.Resources.reel_strip.Height);
                 }
+
+               
+                divideNum2 = 2;
+                while (isLow2 % divideNum2 != 0)
+                {
+                    divideNum2 += 1;
+                    //  isLow /= isLow;
+                }
+                isLow2 /= divideNum2;
+                secondColumn = true;
                 timer8.Enabled = true;
             }
         }
 
         private void timer8_Tick(object sender, EventArgs e)
         {
+            timer8.Interval += 10;
             if (pictureBox4.Location.Y > thisLow2)
             {
                 if (isLow2 > box2Y)
                 {
-                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y - 1);//--
-                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y - 1);
+                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y - isLow2);//--
+                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y - isLow2);
                 }
             }
             else if (pictureBox4.Location.Y < thisLow2)
             {
                 if (isLow2 > box2Y)
                 {
-                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + 1);
-                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + 1);
+                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + isLow2);
+                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + isLow2);
                 }
             }
-            else if (pictureBox4.Location.Y >= thisLow2)
+            else if (pictureBox4.Location.Y <= thisLow2)
             {
                 timer8.Enabled = false;
             }
