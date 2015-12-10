@@ -39,6 +39,7 @@ namespace slot_machine
         int thisLow3;
         int setRealLoc3;
         int divideNum3;
+        bool turnBack;
 
         public Form2()
         {
@@ -257,51 +258,56 @@ namespace slot_machine
 
         private void timer5_Tick(object sender, EventArgs e)
         {
-            if (speed[0] > 0)
+            if (speed[0] > 0)// && turnBack==false
             {
                 speed[0] -= 1;
+                
+               // Console.WriteLine(checkLow);
             }
             else
             {
-                timer5.Enabled = false;
-                checkLow = pictureBox1.Location.Y;
-                // if (checkLow < 0)
-                isLow = Math.Abs(checkLow);
+               
+                //turnBack = true;
+                speed[0] -= 1;
 
-                foreach (int a in loc)
-                {
-                    checkLow = Math.Abs(a - pictureBox1.Location.Y);
-                    if (checkLow < isLow)
-                    {
-                        isLow = checkLow;
-                        thisLow = a;
-                    }
-                }
-                setRealLoc = thisLow;
-                box2Y = 0;
-                if (pictureBox1.Location.Y > pictureBox2.Location.Y)
-                {
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
-                }
-                //else
-                //{
-                //    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox2.Location.Y - Properties.Resources.reel_strip.Height);
-                //}
-                divideNum = 2;
-                while (isLow % divideNum != 0)
-                {
-                    divideNum += 1;
-                }
-                isLow /= divideNum;
-                timer6.Enabled = true;
-                firstColumn = true;
+                 timer5.Enabled = false;
+                 checkLow = pictureBox1.Location.Y;
+                 // if (checkLow < 0)
+                 isLow = Math.Abs(checkLow);
+
+                 foreach (int a in loc)
+                 {
+                     checkLow = Math.Abs(a - pictureBox1.Location.Y);
+                     if (checkLow < isLow)
+                     {
+                         isLow = checkLow;
+                         thisLow = a;
+                     }
+                 }
+                 setRealLoc = thisLow;
+                 box2Y = 0;
+                 if (pictureBox1.Location.Y > pictureBox2.Location.Y)
+                 {
+                     pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
+                 }
+
+                 divideNum = 2;
+                 while (isLow % divideNum != 0)
+                 {
+                     divideNum += 1;
+
+                     Console.WriteLine(isLow);
+                 }
+                 isLow /= divideNum;
+                 timer6.Enabled = true;
+                 firstColumn = true;
             }
-            Console.WriteLine(checkLow);
-            Console.WriteLine(isLow);
-            Console.WriteLine(divideNum);
-            Console.WriteLine(thisLow);
+           /* Console.WriteLine("1:{0}",checkLow);//405
+            Console.WriteLine("2:{0}",isLow);//1
+            Console.WriteLine("3:{0}",divideNum);//5
+            Console.WriteLine("4:{0}",thisLow); //0*/
         }
-
+        
         private void timer6_Tick(object sender, EventArgs e)
         {
             if (pictureBox1.Location.Y > pictureBox2.Location.Y)
@@ -315,17 +321,20 @@ namespace slot_machine
                 {
                     pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - isLow);//--
                     pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - isLow);
+                   
                 }
             }
             else if (pictureBox1.Location.Y < thisLow)
             {
                 if (isLow > box2Y)
                 {
-                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + isLow);
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + isLow);
+                    Console.WriteLine("double");
+                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + (isLow));
+                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + (isLow));
+                 
                 }
             }
-            else if (pictureBox1.Location.Y <= thisLow )
+            else if (pictureBox1.Location.Y <= thisLow || pictureBox1.Location.Y >= thisLow)
             {
                 timer6.Enabled = false;
             }
@@ -394,8 +403,8 @@ namespace slot_machine
             {
                 if (isLow2 > box2Y2)
                 {
-                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + isLow2);
-                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + isLow2);
+                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + (isLow2*2));
+                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + (isLow2*2));
                 }
             }
             else if (pictureBox4.Location.Y <= thisLow2)
@@ -464,8 +473,8 @@ namespace slot_machine
             {
                 if (isLow3 > box2Y3)
                 {
-                    pictureBox6.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y + isLow3);
-                    pictureBox5.Location = new Point(pictureBox5.Location.X, pictureBox5.Location.Y + isLow3);
+                    pictureBox6.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y + (isLow3*2));
+                    pictureBox5.Location = new Point(pictureBox5.Location.X, pictureBox5.Location.Y + (isLow3*2));
                 }
             }
             else if (pictureBox6.Location.Y <= thisLow3)
