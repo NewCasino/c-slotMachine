@@ -43,6 +43,7 @@ namespace slot_machine
         int target;
         int target2;
         int target3;
+        bool fruit;
 
         public Form2()
         {
@@ -64,12 +65,12 @@ namespace slot_machine
 
         private void pictureboxLoc()
         {
-            loc.Add(pictureBox1.Location.Y); //banana
-            loc.Add(pictureBox1.Location.Y + (1 * 120)); //big win
-            loc.Add(pictureBox1.Location.Y + (2 * 120)); //red
-            loc.Add(pictureBox1.Location.Y + (3 * 120));//bar
-            loc.Add(pictureBox1.Location.Y + (4 * 120));//watermelon
-            loc.Add(pictureBox1.Location.Y + (5 * 120));//7
+            loc.Add(pictureBox1.Location.Y); //banana 200
+            loc.Add(pictureBox1.Location.Y + (1 * 120)); //big win 320
+            loc.Add(pictureBox1.Location.Y + (2 * 120)); //red 440
+            loc.Add(pictureBox1.Location.Y + (3 * 120));//bar 560
+            loc.Add(pictureBox1.Location.Y + (4 * 120));//watermelon 680
+            loc.Add(pictureBox1.Location.Y + (5 * 120));//7 800
         }
 
         private void pictureboxRandom()
@@ -183,6 +184,11 @@ namespace slot_machine
         int i;
         private void button3_Click(object sender, EventArgs e)
         {
+            fruit = false;
+            foreach (Label a in panel2.Controls)
+            {
+                a.BackColor = DefaultBackColor;
+            }
             reset();
            // i = rnd.Next(-20, 20);
             pictureboxStart();
@@ -191,7 +197,8 @@ namespace slot_machine
             target3 = loc[rnd.Next(0, loc.Count - 1)];
             Console.WriteLine("{0} {1} {2}",target,target2,target3);
             timer4.Enabled = true;
-            //pictureboxStop();
+            button3.Enabled = false;
+            label13.Text = (Convert.ToInt32(label13.Text) - Convert.ToInt32(label11.Text)).ToString();
         }
 
         private void reset()
@@ -270,58 +277,6 @@ namespace slot_machine
                 
             }
 
-           /* if (speed[0] > 0 && turnBack == false)// && turnBack==false
-            {
-                speed[0] -= 1;
-                
-               // Console.WriteLine(checkLow);
-            }
-            else
-            {
-               
-                turnBack = true;
-             //   speed[0] -= 1;
-
-                 timer5.Enabled = false;
-                 checkLow = pictureBox1.Location.Y;
-                 // if (checkLow < 0)
-                 isLow = Math.Abs(checkLow);
-
-                 foreach (int a in loc)
-                 {
-                     checkLow = Math.Abs(a - pictureBox1.Location.Y);
-                     if (checkLow < isLow)
-                     {
-                         isLow = checkLow;
-                         thisLow = a;
-                     }
-                 }
-                 setRealLoc = thisLow;
-                 box2Y = 0;
-                 if (pictureBox1.Location.Y > pictureBox2.Location.Y)
-                 {
-                     pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
-                 }
-
-                 divideNum = 2;
-                 while (isLow % divideNum != 0)
-                 {
-                     divideNum += 1;
-
-                   //  Console.WriteLine(isLow);
-                 }
-
-              
-
-                isLow /= divideNum;
-             
-                timer6.Enabled = true;
-                 firstColumn = true;
-            }
-           /* Console.WriteLine("1:{0}",checkLow);//405
-            Console.WriteLine("2:{0}",isLow);//1
-            Console.WriteLine("3:{0}",divideNum);//5
-            Console.WriteLine("4:{0}",thisLow); //0*/
         }
         
         private void timer6_Tick(object sender, EventArgs e)
@@ -329,36 +284,6 @@ namespace slot_machine
            
           
 
-            /*  if (pictureBox1.Location.Y > pictureBox2.Location.Y)
-              {
-                  pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
-              }
-             // timer6.Interval += 1;
-              if (pictureBox1.Location.Y > thisLow)
-              {
-                  if (isLow > box2Y)
-                  {
-                      pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - isLow);//--
-                      pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - isLow);
-
-                  }
-              }
-
-              else if (pictureBox1.Location.Y < thisLow)
-              {
-                  if (isLow > box2Y)
-                  {
-                      Console.WriteLine("double");
-                      pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + (isLow));
-                      pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + (isLow));
-
-                  }
-              }
-
-              else if (pictureBox1.Location.Y <= thisLow || pictureBox1.Location.Y >= thisLow)
-              {
-                  timer6.Enabled = false;
-              }*/
 
         }
 
@@ -371,74 +296,12 @@ namespace slot_machine
                 timer7.Enabled = false;
                 speed[1] = 0;
             }
-            /*if (speed[1] > 0)
-            {
-                speed[1] -= 1;
-            }
-            else
-            {
-                timer7.Enabled = false;
-                checklow2 = pictureBox4.Location.Y;
-                isLow2 = Math.Abs(checklow2);
-
-                foreach (int a in loc)
-                {
-                    checklow2 = Math.Abs(a - pictureBox4.Location.Y);
-                    if (checklow2 < isLow2)
-                    {
-                        isLow2 = checklow2;
-                        thisLow2 = a;
-                    }
-                }
-                setRealLoc2 = thisLow2;
-                box2Y2 = 0;
-
-                if (pictureBox4.Location.Y > pictureBox3.Location.Y)
-                {
-                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox4.Location.Y - Properties.Resources.reel_strip.Height);
-                }
-
-               
-                divideNum2 = 2;
-                while (isLow2 % divideNum2 != 0)
-                {
-                    divideNum2 += 1;
-                    //  isLow /= isLow;
-                }
-                isLow2 /= divideNum2;
-                secondColumn = true;
-                timer8.Enabled = true;
-            }*/
+           
         }
 
         private void timer8_Tick(object sender, EventArgs e)
         {
 
-            if (pictureBox4.Location.Y > pictureBox3.Location.Y)
-            {
-                pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox4.Location.Y - Properties.Resources.reel_strip.Height);
-            }
-            timer8.Interval += 10;
-            if (pictureBox4.Location.Y > thisLow2)
-            {
-                if (isLow2 > box2Y2)
-                {
-                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y - isLow2);//--
-                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y - isLow2);
-                }
-            }
-            else if (pictureBox4.Location.Y < thisLow2)
-            {
-                if (isLow2 > box2Y2)
-                {
-                    pictureBox4.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + (isLow2*2));
-                    pictureBox3.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + (isLow2*2));
-                }
-            }
-            else if (pictureBox4.Location.Y <= thisLow2)
-            {
-                timer8.Enabled = false;
-            }
         }
        
         private void timer9_Tick(object sender, EventArgs e)
@@ -448,73 +311,66 @@ namespace slot_machine
                 // firstColumn = true;
                 timer9.Enabled = false;
                 speed[2] = 0;
-            }
-            /*if (speed[2] > 0)
-            {
-                speed[2] -= 1;
-            }
-            else
-            {
-                timer9.Enabled = false;
-                checkLow3 = pictureBox6.Location.Y;
-                // if (checkLow < 0)
-                isLow3 = Math.Abs(checkLow3);
+                button3.Enabled = true;
+                result();
 
-                foreach (int a in loc)
-                {
-                    checkLow3 = Math.Abs(a - pictureBox6.Location.Y);
-                    if (checkLow3 < isLow3)
-                    {
-                        isLow3 = checkLow3;
-                        thisLow3 = a;
-                    }
-                }
-                setRealLoc3 = thisLow3;
-                box2Y3 = 0;
-                if (pictureBox6.Location.Y > pictureBox5.Location.Y)
-                {
-                    pictureBox5.Location = new Point(pictureBox5.Location.X, pictureBox6.Location.Y - Properties.Resources.reel_strip.Height);
-                }
-                
-                divideNum3 = 2;
-                while (isLow3 % divideNum3 != 0)
-                {
-                    divideNum3 += 1;
-                }
-                isLow3 /= divideNum3;
-                timer10.Enabled = true;
-                thirdColumn = true;
-            }*/
+            }
+           
+        }
+
+        private void result()
+        {
+            if (target==320 && target2 == 320 && target3 == 320) //big win
+            {
+                label1.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label1.Text)).ToString();
+            }
+            if (target == 560 && target2 == 560 && target3 == 560) //bar
+            {
+                label2.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label2.Text)).ToString();
+            }
+            if (target == 800 && target2 == 800&& target3 == 800) //7
+            {
+                label3.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label3.Text)).ToString();
+            }
+            if ((target == 680 || target == 200)&&(target2==440||target2==800)&&(target3==560||target3==320))
+            {
+                label4.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) + Convert.ToInt32( label4.Text)).ToString();
+            }
+            if (target == 440 && target2 == 440 && target3 == 440) //red
+            {
+                fruit = true;
+                label5.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label5.Text)).ToString();
+            }
+            if (target == 200 && target2 == 200 && target3 == 200) //banana
+            {
+                fruit = true;
+                label6.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label6.Text)).ToString();
+            }
+            if (target == 680 && target2 == 680 && target3 == 680) //watermelon
+            {
+                fruit = true;
+                label7.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label7.Text)).ToString();
+            }
+            if ((target == 200||target==440||target2==680)&& (target2 == 200 || target2 == 440 || target == 680) && (target3 == 200 || target3 == 440 || target3 == 680) && fruit == false ) //3 fruit
+            {
+                label8.BackColor = Color.Yellow;
+                label13.Text = (Convert.ToInt32(label13.Text) + Convert.ToInt32(label8.Text)).ToString();
+
+            }
+           
+
         }
 
         private void timer10_Tick(object sender, EventArgs e)
         {
-            if (pictureBox6.Location.Y > pictureBox5.Location.Y)
-            {
-                pictureBox5.Location = new Point(pictureBox5.Location.X, pictureBox6.Location.Y - Properties.Resources.reel_strip.Height);
-            }
-
-            timer10.Interval += 10;
-            if (pictureBox6.Location.Y > thisLow3)
-            {
-                if (isLow3 > box2Y3)
-                {
-                    pictureBox6.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y - isLow3);//--
-                    pictureBox5.Location = new Point(pictureBox5.Location.X, pictureBox5.Location.Y - isLow3);
-                }
-            }
-            else if (pictureBox6.Location.Y < thisLow3)
-            {
-                if (isLow3 > box2Y3)
-                {
-                    pictureBox6.Location = new Point(pictureBox6.Location.X, pictureBox6.Location.Y + (isLow3*2));
-                    pictureBox5.Location = new Point(pictureBox5.Location.X, pictureBox5.Location.Y + (isLow3*2));
-                }
-            }
-            else if (pictureBox6.Location.Y <= thisLow3)
-            {
-                timer10.Enabled = false;
-            }
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -531,6 +387,24 @@ namespace slot_machine
             {
                 label11.Text = (Convert.ToInt32(label11.Text) - 1).ToString();
             }
+        }
+
+        private void label11_TextChanged(object sender, EventArgs e)
+        {
+            label1.Text = (200 * Convert.ToInt32( label11.Text)).ToString();
+            label2.Text = (50 * Convert.ToInt32(label11.Text)).ToString();
+            label3.Text = (20 * Convert.ToInt32(label11.Text)).ToString();
+            label4.Text = (16 * Convert.ToInt32(label11.Text)).ToString();
+            label5.Text = (15 * Convert.ToInt32(label11.Text)).ToString();
+            label6.Text = (14 * Convert.ToInt32(label11.Text)).ToString();
+            label7.Text = (12 * Convert.ToInt32(label11.Text)).ToString();
+            label8.Text = (7 * Convert.ToInt32(label11.Text)).ToString();
+            label9.Text = (4 * Convert.ToInt32(label11.Text)).ToString();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }//box1 : 560,320
