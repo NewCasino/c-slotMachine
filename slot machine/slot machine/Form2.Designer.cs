@@ -35,6 +35,16 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.button3 = new System.Windows.Forms.Button();
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.timer5 = new System.Windows.Forms.Timer(this.components);
+            this.timer6 = new System.Windows.Forms.Timer(this.components);
+            this.button5 = new System.Windows.Forms.Button();
+            this.timer7 = new System.Windows.Forms.Timer(this.components);
+            this.timer8 = new System.Windows.Forms.Timer(this.components);
+            this.timer9 = new System.Windows.Forms.Timer(this.components);
+            this.timer10 = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -42,16 +52,21 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.timer5 = new System.Windows.Forms.Timer(this.components);
-            this.timer6 = new System.Windows.Forms.Timer(this.components);
-            this.button5 = new System.Windows.Forms.Button();
-            this.timer7 = new System.Windows.Forms.Timer(this.components);
-            this.timer8 = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.timer9 = new System.Windows.Forms.Timer(this.components);
-            this.timer10 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -96,7 +111,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(495, 248);
+            this.button3.Location = new System.Drawing.Point(455, 349);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 8;
@@ -104,10 +119,74 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // timer4
+            // 
+            this.timer4.Interval = 1;
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            // 
+            // timer5
+            // 
+            this.timer5.Interval = 1;
+            this.timer5.Tick += new System.EventHandler(this.timer5_Tick);
+            // 
+            // timer6
+            // 
+            this.timer6.Interval = 50;
+            this.timer6.Tick += new System.EventHandler(this.timer6_Tick);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(25, 261);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(434, 10);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // timer7
+            // 
+            this.timer7.Interval = 1;
+            this.timer7.Tick += new System.EventHandler(this.timer7_Tick);
+            // 
+            // timer8
+            // 
+            this.timer8.Interval = 10;
+            this.timer8.Tick += new System.EventHandler(this.timer8_Tick);
+            // 
+            // timer9
+            // 
+            this.timer9.Interval = 1;
+            this.timer9.Tick += new System.EventHandler(this.timer9_Tick);
+            // 
+            // timer10
+            // 
+            this.timer10.Interval = 10;
+            this.timer10.Tick += new System.EventHandler(this.timer10_Tick);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Location = new System.Drawing.Point(18, 392);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(440, 182);
+            this.panel1.TabIndex = 14;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::slot_machine.Properties.Resources.Capture;
+            this.pictureBox8.Location = new System.Drawing.Point(549, 78);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(138, 400);
+            this.pictureBox8.TabIndex = 15;
+            this.pictureBox8.TabStop = false;
+            // 
             // pictureBox7
             // 
             this.pictureBox7.Image = global::slot_machine.Properties.Resources.Untitled;
-            this.pictureBox7.Location = new System.Drawing.Point(-27, -41);
+            this.pictureBox7.Location = new System.Drawing.Point(-29, -25);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(547, 170);
             this.pictureBox7.TabIndex = 9;
@@ -164,76 +243,139 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // timer4
+            // label1
             // 
-            this.timer4.Interval = 1;
-            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(704, 98);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "label1";
             // 
-            // timer5
+            // label2
             // 
-            this.timer5.Interval = 1;
-            this.timer5.Tick += new System.EventHandler(this.timer5_Tick);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(704, 142);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "label2";
             // 
-            // timer6
+            // label3
             // 
-            this.timer6.Interval = 10;
-            this.timer6.Tick += new System.EventHandler(this.timer6_Tick);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(704, 181);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "label3";
             // 
-            // button5
+            // label4
             // 
-            this.button5.Location = new System.Drawing.Point(25, 261);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(434, 10);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(704, 225);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "label4";
             // 
-            // timer7
+            // label5
             // 
-            this.timer7.Interval = 1;
-            this.timer7.Tick += new System.EventHandler(this.timer7_Tick);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(704, 261);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "label5";
             // 
-            // timer8
+            // label6
             // 
-            this.timer8.Interval = 10;
-            this.timer8.Tick += new System.EventHandler(this.timer8_Tick);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(704, 308);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "label6";
             // 
-            // button6
+            // label7
             // 
-            this.button6.Location = new System.Drawing.Point(426, 184);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(434, 10);
-            this.button6.TabIndex = 13;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(704, 349);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "label7";
             // 
-            // timer9
+            // label8
             // 
-            this.timer9.Interval = 1;
-            this.timer9.Tick += new System.EventHandler(this.timer9_Tick);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(704, 392);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "label8";
             // 
-            // timer10
+            // label9
             // 
-            this.timer10.Interval = 10;
-            this.timer10.Tick += new System.EventHandler(this.timer10_Tick);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(704, 437);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "label9";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(325, 21);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(28, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "BET";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(332, 55);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(13, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "1";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(465, 338);
+            this.button4.Location = new System.Drawing.Point(376, 15);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "button4";
+            this.button4.Size = new System.Drawing.Size(26, 24);
+            this.button4.TabIndex = 18;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(376, 55);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(26, 24);
+            this.button6.TabIndex = 19;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 600);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button6);
+            this.ClientSize = new System.Drawing.Size(751, 544);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox5);
@@ -248,6 +390,9 @@
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -256,6 +401,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -280,9 +426,22 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer timer7;
         private System.Windows.Forms.Timer timer8;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Timer timer9;
         private System.Windows.Forms.Timer timer10;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }

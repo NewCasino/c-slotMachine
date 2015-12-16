@@ -40,6 +40,9 @@ namespace slot_machine
         int setRealLoc3;
         int divideNum3;
         bool turnBack;
+        int target;
+        int target2;
+        int target3;
 
         public Form2()
         {
@@ -55,23 +58,18 @@ namespace slot_machine
             pictureboxLocation();
             pictureboxImage();
             pictureboxRandom();
-            Console.WriteLine("{0},{1},{2},{3},{4},{5},({6},{7},{8},{9},{10}", loc[0], loc[1], loc[2], loc[3], loc[4], loc[5], loc[6], loc[7], loc[8], loc[9], loc[10]);
+            Console.WriteLine("{0},{1},{2},{3},{4},{5}", loc[0], loc[1], loc[2], loc[3], loc[4], loc[5]);
             Console.WriteLine("box4:{0},box3:{1}", pictureBox4.Location.Y, pictureBox3.Location.Y);
         }
 
         private void pictureboxLoc()
         {
-            loc.Add(pictureBox1.Location.Y);
-            loc.Add(pictureBox1.Location.Y + (1 * 120));
-            loc.Add(pictureBox1.Location.Y + (2 * 120));
-            loc.Add(pictureBox1.Location.Y + (3 * 120));
-            loc.Add(pictureBox1.Location.Y + (4 * 120));
-            loc.Add(pictureBox1.Location.Y + (5 * 120));
-            loc.Add(pictureBox1.Location.Y - (1 * 120));
-            loc.Add(pictureBox1.Location.Y - (2 * 120));
-            loc.Add(pictureBox1.Location.Y - (3 * 120));
-            loc.Add(pictureBox1.Location.Y - (4 * 120));
-            loc.Add(pictureBox1.Location.Y - (5 * 120));
+            loc.Add(pictureBox1.Location.Y); //banana
+            loc.Add(pictureBox1.Location.Y + (1 * 120)); //big win
+            loc.Add(pictureBox1.Location.Y + (2 * 120)); //red
+            loc.Add(pictureBox1.Location.Y + (3 * 120));//bar
+            loc.Add(pictureBox1.Location.Y + (4 * 120));//watermelon
+            loc.Add(pictureBox1.Location.Y + (5 * 120));//7
         }
 
         private void pictureboxRandom()
@@ -188,6 +186,10 @@ namespace slot_machine
             reset();
            // i = rnd.Next(-20, 20);
             pictureboxStart();
+            target = loc[rnd.Next(0, loc.Count - 1)];
+            target2 = loc[rnd.Next(0, loc.Count - 1)];
+            target3 = loc[rnd.Next(0, loc.Count - 1)];
+            Console.WriteLine("{0} {1} {2}",target,target2,target3);
             timer4.Enabled = true;
             //pictureboxStop();
         }
@@ -204,6 +206,7 @@ namespace slot_machine
             timer6.Interval = 10;
             timer8.Interval = 10;
             timer10.Interval = 10;
+            turnBack = false;
         }
 
         private void pictureboxStop()
@@ -214,20 +217,21 @@ namespace slot_machine
         private void timer4_Tick(object sender, EventArgs e)
         {
             i += 1;
-            if (i >= rnd.Next(120,140))
+            if (i >= 120)
             {
                 // timer4.Enabled = false;
                 if (firstColumn == false)
                 {
+                    
                     timer5.Enabled = true;
                 }
-                if (i >= rnd.Next(140,160))
+                if (i >= 160)
                 {
                     if (secondColumn == false)
                     {
                         timer7.Enabled = true;
                     }
-                   if (i>= rnd.Next(160, 180))
+                   if (i>=200)
                     {
                         if (thirdColumn == false)
                         {
@@ -258,7 +262,15 @@ namespace slot_machine
 
         private void timer5_Tick(object sender, EventArgs e)
         {
-            if (speed[0] > 0)// && turnBack==false
+            if (pictureBox1.Location.Y == target )
+            {
+                // firstColumn = true;
+                 timer5.Enabled = false;
+                speed[0] = 0;
+                
+            }
+
+           /* if (speed[0] > 0 && turnBack == false)// && turnBack==false
             {
                 speed[0] -= 1;
                 
@@ -267,8 +279,8 @@ namespace slot_machine
             else
             {
                
-                //turnBack = true;
-                speed[0] -= 1;
+                turnBack = true;
+             //   speed[0] -= 1;
 
                  timer5.Enabled = false;
                  checkLow = pictureBox1.Location.Y;
@@ -296,10 +308,14 @@ namespace slot_machine
                  {
                      divideNum += 1;
 
-                     Console.WriteLine(isLow);
+                   //  Console.WriteLine(isLow);
                  }
-                 isLow /= divideNum;
-                 timer6.Enabled = true;
+
+              
+
+                isLow /= divideNum;
+             
+                timer6.Enabled = true;
                  firstColumn = true;
             }
            /* Console.WriteLine("1:{0}",checkLow);//405
@@ -310,40 +326,52 @@ namespace slot_machine
         
         private void timer6_Tick(object sender, EventArgs e)
         {
-            if (pictureBox1.Location.Y > pictureBox2.Location.Y)
-            {
-                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
-            }
-            timer6.Interval += 10;
-            if (pictureBox1.Location.Y > thisLow)
-            {
-                if (isLow > box2Y)
-                {
-                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - isLow);//--
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - isLow);
-                   
-                }
-            }
-            else if (pictureBox1.Location.Y < thisLow)
-            {
-                if (isLow > box2Y)
-                {
-                    Console.WriteLine("double");
-                    pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + (isLow));
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + (isLow));
-                 
-                }
-            }
-            else if (pictureBox1.Location.Y <= thisLow || pictureBox1.Location.Y >= thisLow)
-            {
-                timer6.Enabled = false;
-            }
+           
+          
+
+            /*  if (pictureBox1.Location.Y > pictureBox2.Location.Y)
+              {
+                  pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox1.Location.Y - Properties.Resources.reel_strip.Height);
+              }
+             // timer6.Interval += 1;
+              if (pictureBox1.Location.Y > thisLow)
+              {
+                  if (isLow > box2Y)
+                  {
+                      pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - isLow);//--
+                      pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - isLow);
+
+                  }
+              }
+
+              else if (pictureBox1.Location.Y < thisLow)
+              {
+                  if (isLow > box2Y)
+                  {
+                      Console.WriteLine("double");
+                      pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y + (isLow));
+                      pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + (isLow));
+
+                  }
+              }
+
+              else if (pictureBox1.Location.Y <= thisLow || pictureBox1.Location.Y >= thisLow)
+              {
+                  timer6.Enabled = false;
+              }*/
 
         }
-        
+
         private void timer7_Tick(object sender, EventArgs e)
         {
-            if (speed[1] > 0)
+
+            if (pictureBox4.Location.Y == target2)
+            {
+                // firstColumn = true;
+                timer7.Enabled = false;
+                speed[1] = 0;
+            }
+            /*if (speed[1] > 0)
             {
                 speed[1] -= 1;
             }
@@ -380,7 +408,7 @@ namespace slot_machine
                 isLow2 /= divideNum2;
                 secondColumn = true;
                 timer8.Enabled = true;
-            }
+            }*/
         }
 
         private void timer8_Tick(object sender, EventArgs e)
@@ -415,7 +443,13 @@ namespace slot_machine
        
         private void timer9_Tick(object sender, EventArgs e)
         {
-            if (speed[2] > 0)
+            if (pictureBox6.Location.Y == target3)
+            {
+                // firstColumn = true;
+                timer9.Enabled = false;
+                speed[2] = 0;
+            }
+            /*if (speed[2] > 0)
             {
                 speed[2] -= 1;
             }
@@ -450,7 +484,7 @@ namespace slot_machine
                 isLow3 /= divideNum3;
                 timer10.Enabled = true;
                 thirdColumn = true;
-            }
+            }*/
         }
 
         private void timer10_Tick(object sender, EventArgs e)
@@ -485,7 +519,18 @@ namespace slot_machine
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("box1:{0}-box2:{1} ={2}",pictureBox1.Location.Y,pictureBox2.Location.Y);
+            if (Convert.ToInt32(label11.Text) < 10)
+            {
+                label11.Text = (Convert.ToInt32(label11.Text) + 1).ToString();
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(label11.Text) > 1)
+            {
+                label11.Text = (Convert.ToInt32(label11.Text) - 1).ToString();
+            }
         }
     }
 }//box1 : 560,320
