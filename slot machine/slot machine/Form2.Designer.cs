@@ -37,13 +37,14 @@
             this.button3 = new System.Windows.Forms.Button();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.timer5 = new System.Windows.Forms.Timer(this.components);
-            this.timer6 = new System.Windows.Forms.Timer(this.components);
             this.button5 = new System.Windows.Forms.Button();
             this.timer7 = new System.Windows.Forms.Timer(this.components);
-            this.timer8 = new System.Windows.Forms.Timer(this.components);
             this.timer9 = new System.Windows.Forms.Timer(this.components);
-            this.timer10 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -66,8 +67,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -119,7 +118,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 8;
-            this.button3.Text = "button3";
+            this.button3.Text = "SPIN";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -132,11 +131,6 @@
             // 
             this.timer5.Interval = 1;
             this.timer5.Tick += new System.EventHandler(this.timer5_Tick);
-            // 
-            // timer6
-            // 
-            this.timer6.Interval = 50;
-            this.timer6.Tick += new System.EventHandler(this.timer6_Tick);
             // 
             // button5
             // 
@@ -152,23 +146,15 @@
             this.timer7.Interval = 1;
             this.timer7.Tick += new System.EventHandler(this.timer7_Tick);
             // 
-            // timer8
-            // 
-            this.timer8.Interval = 10;
-            this.timer8.Tick += new System.EventHandler(this.timer8_Tick);
-            // 
             // timer9
             // 
             this.timer9.Interval = 1;
             this.timer9.Tick += new System.EventHandler(this.timer9_Tick);
             // 
-            // timer10
-            // 
-            this.timer10.Interval = 10;
-            this.timer10.Tick += new System.EventHandler(this.timer10_Tick);
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.button6);
@@ -180,6 +166,42 @@
             this.panel1.Size = new System.Drawing.Size(440, 182);
             this.panel1.TabIndex = 14;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(112, 55);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(13, 13);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "0";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(112, 21);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 13);
+            this.label14.TabIndex = 22;
+            this.label14.Text = "LAST WIN";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(234, 55);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "1000";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(208, 21);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(77, 13);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "TOTAL SPINS";
             // 
             // button6
             // 
@@ -384,24 +406,6 @@
             this.panel2.Size = new System.Drawing.Size(44, 383);
             this.panel2.TabIndex = 25;
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(208, 21);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 13);
-            this.label12.TabIndex = 20;
-            this.label12.Text = "TOTAL SPINS";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(234, 55);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 13);
-            this.label13.TabIndex = 21;
-            this.label13.Text = "1000";
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,12 +461,9 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.Timer timer5;
-        private System.Windows.Forms.Timer timer6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer timer7;
-        private System.Windows.Forms.Timer timer8;
         private System.Windows.Forms.Timer timer9;
-        private System.Windows.Forms.Timer timer10;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label label1;
@@ -481,5 +482,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
     }
 }

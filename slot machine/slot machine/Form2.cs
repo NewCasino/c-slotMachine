@@ -44,6 +44,8 @@ namespace slot_machine
         int target2;
         int target3;
         bool fruit;
+        bool isWin;
+        Form3 f3 = new Form3();
 
         public Form2()
         {
@@ -52,7 +54,7 @@ namespace slot_machine
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            label13.Text = Form3.num.ToString();
             pictureboxLoc();
             pictureboxWidtHeight();
             buttonLocation();
@@ -192,9 +194,9 @@ namespace slot_machine
             reset();
            // i = rnd.Next(-20, 20);
             pictureboxStart();
-            target = loc[rnd.Next(0, loc.Count - 1)];
-            target2 = loc[rnd.Next(0, loc.Count - 1)];
-            target3 = loc[rnd.Next(0, loc.Count - 1)];
+            target = loc[rnd.Next(0, loc.Count )];
+            target2 = loc[rnd.Next(0, loc.Count )];
+            target3 = loc[rnd.Next(0, loc.Count )];
             Console.WriteLine("{0} {1} {2}",target,target2,target3);
             timer4.Enabled = true;
             button3.Enabled = false;
@@ -210,9 +212,7 @@ namespace slot_machine
             speed[0] = 30;
             speed[1] = 30;
             speed[2] = 30;
-            timer6.Interval = 10;
-            timer8.Interval = 10;
-            timer10.Interval = 10;
+         
             turnBack = false;
         }
 
@@ -279,13 +279,7 @@ namespace slot_machine
 
         }
         
-        private void timer6_Tick(object sender, EventArgs e)
-        {
-           
-          
-
-
-        }
+      
 
         private void timer7_Tick(object sender, EventArgs e)
         {
@@ -299,10 +293,7 @@ namespace slot_machine
            
         }
 
-        private void timer8_Tick(object sender, EventArgs e)
-        {
-
-        }
+      
        
         private void timer9_Tick(object sender, EventArgs e)
         {
@@ -313,7 +304,15 @@ namespace slot_machine
                 speed[2] = 0;
                 button3.Enabled = true;
                 result();
-
+                if (isWin == false)
+                {
+                    if (label13.Text == "0")
+                    {
+                        MessageBox.Show("game over");
+                        f3.Show();
+                        this.Close();
+                    }
+                }
             }
            
         }
@@ -322,44 +321,60 @@ namespace slot_machine
         {
             if (target==320 && target2 == 320 && target3 == 320) //big win
             {
+                isWin = true;
+                label15.Text = label1.Text;
                 label1.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label1.Text)).ToString();
             }
             if (target == 560 && target2 == 560 && target3 == 560) //bar
             {
+                isWin = true;
+                label15.Text = label2.Text;
                 label2.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label2.Text)).ToString();
             }
             if (target == 800 && target2 == 800&& target3 == 800) //7
             {
+                isWin = true;
+                label15.Text = label3.Text;
                 label3.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label3.Text)).ToString();
             }
             if ((target == 680 || target == 200)&&(target2==440||target2==800)&&(target3==560||target3==320))
             {
+                isWin = true;
+                label15.Text = label4.Text;
                 label4.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) + Convert.ToInt32( label4.Text)).ToString();
             }
             if (target == 440 && target2 == 440 && target3 == 440) //red
             {
+                isWin = true;
+                label15.Text = label5.Text;
                 fruit = true;
                 label5.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label5.Text)).ToString();
             }
             if (target == 200 && target2 == 200 && target3 == 200) //banana
             {
+                isWin = true;
+                label15.Text = label6.Text;
                 fruit = true;
                 label6.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label6.Text)).ToString();
             }
             if (target == 680 && target2 == 680 && target3 == 680) //watermelon
             {
+                isWin = true;
+                label15.Text = label7.Text;
                 fruit = true;
                 label7.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) +Convert.ToInt32( label7.Text)).ToString();
             }
-            if ((target == 200||target==440||target2==680)&& (target2 == 200 || target2 == 440 || target == 680) && (target3 == 200 || target3 == 440 || target3 == 680) && fruit == false ) //3 fruit
+            if ((target == 200||target==440||target==680)&& (target2 == 200 || target2 == 440 || target2 == 680) && (target3 == 200 || target3 == 440 || target3 == 680) && fruit == false ) //3 fruit
             {
+                isWin = true;
+                label15.Text = label8.Text;
                 label8.BackColor = Color.Yellow;
                 label13.Text = (Convert.ToInt32(label13.Text) + Convert.ToInt32(label8.Text)).ToString();
 
@@ -368,14 +383,10 @@ namespace slot_machine
 
         }
 
-        private void timer10_Tick(object sender, EventArgs e)
-        {
-            
-        }
-
+      
         private void button4_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(label11.Text) < 10)
+            if (Convert.ToInt32(label11.Text) < 10 && Convert.ToInt32(label11.Text)<Convert.ToInt32(label13.Text))
             {
                 label11.Text = (Convert.ToInt32(label11.Text) + 1).ToString();
             }
